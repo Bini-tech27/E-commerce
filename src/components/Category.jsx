@@ -21,16 +21,16 @@ function Category() {
       });
   }, []);
 
-   useEffect(() => {
-     axios
-       .get(`${ipAdd}/product/category/${category_id}`)
-       .then((response) => {
-         setProducts(response.data);
-       })
-       .catch((error) => {
-         console.error("Error fetching product:", error);
-       });
-   }, [category_id]);
+    useEffect(() => {
+      axios
+        .get(`${ipAdd}/product/category/${category_id}`)
+        .then((response) => {
+          setProducts(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching product:", error);
+        });
+    }, [category_id]);
   
 
 
