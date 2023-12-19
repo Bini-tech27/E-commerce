@@ -1,8 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { ipAdd } from "./IpAdd";
 
-function User() {
+function Register() {
   const {
     register,
     handleSubmit,
@@ -12,19 +13,19 @@ function User() {
 
   const onSubmit = (data) => {
     console.log(data);
+    let formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("file", data.proPic[0]);
+    formData.append("password", data.password);
+    formData.append("email", data.email);
+
     axios
-      .post(
-        "http://172.16.32.242:8000/users",
-        {
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        },
-      
-      )
+      .post(`${ipAdd}/users`, formData)
 
       .then((response) => {
         console.log(response);
+                window.location.replace("/sign-in");
+
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
@@ -32,7 +33,7 @@ function User() {
   };
 
   return (
-    <div className="bg-yellow-600">
+    <div className="bg-yellow-700">
       <div className="flex justify-center  ">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -71,9 +72,18 @@ function User() {
               <p className="text-red-500">{errors.email.message}</p>
             )}
           </label>
-
-         
-
+          <label className="block mb-4">
+            <span className="text-gray-700">Photo:</span>
+            <input
+              type="file"
+              {...register("proPic", {
+                required: "Photo is required",
+              })}
+            />
+            {errors && errors.proPic && (
+              <p className="text-red-500">{errors.proPic.message}</p>
+            )}
+          </label>
           <label className="block mb-4">
             <span className="text-gray-700">Password:</span>
             <input
@@ -85,8 +95,6 @@ function User() {
               <p className="text-red-500">{errors.password.message}</p>
             )}
           </label>
-         
-
           <button
             type="submit"
             className="bg-black text-white px-4 py-2 rounded-md hover:bg-yellow-600 focus:outline-none focus:shadow-outline-yellow"
@@ -107,4 +115,4 @@ function User() {
   );
 }
 
-export default User;
+export default Register;

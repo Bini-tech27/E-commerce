@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ipAdd } from "./IPADD";
+import { ipAdd } from "./IpAdd";
 import axios from "axios";
 
 function ProductDetail() {
@@ -9,7 +9,7 @@ function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://172.16.32.242:8000/product/${id}`)
+      .get(`${ipAdd}/product/${id}`)
       .then((response) => {
         setProduct(response.data.product);
       })
@@ -17,7 +17,7 @@ function ProductDetail() {
         console.error("Error fetching product:", error);
       });
   }, [id]);
-
+  
 
   return (
     <div className="flex justify-center mt-5 ">
@@ -30,7 +30,7 @@ function ProductDetail() {
             />
             <h1 className="text-xl font-semibold mb-2">{items.productName}</h1>
             <p className="text-gray-700">{items.description}</p>
-            <div className="flex" >
+            <div className="flex">
               <span className="text-lg font-bold text-yellow-600 mr-24 ">
                 ${items.price}
               </span>

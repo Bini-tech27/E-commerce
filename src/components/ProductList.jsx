@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ipAdd } from "./IPADD";
+
+import { ipAdd } from "./IpAdd";
 import Cart from "./Cart";
 
 function ProductList() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://172.16.32.242:8000/product")
+      .get(`${ipAdd}/product`)
       .then((response) => {
         setData(response.data.product);
       })

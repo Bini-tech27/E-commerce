@@ -1,7 +1,11 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { ipAdd } from "./IpAdd";
+import { useParams } from "react-router";
 
-function SignIn() {
+function SignIn() {  
+  const { id } = useParams();
   const {
     register,
     handleSubmit,
@@ -10,11 +14,29 @@ function SignIn() {
   } = useForm();
 
   const onSubmit = (data) => {
-    // Handle form submission here
+    let formData = new FormData();
+    formData.append("email",data.email);
+    formData.append("password", data.password);
+
+    axios
+      .post(`${ipAdd}/users/login`, {
+        email: data.email,
+        password: data.password,
+      })
+
+      .then((response) => {
+        console.log(response);
+          localStorage.setItem("token", response.data.token);
+        window.location.replace("/");
+      })
+
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+      });
     console.log("Form submitted:", data);
   };
   return (
-    <div className="bg-yellow-600">
+    <div className="bg-yellow-700">
       <div className="flex justify-center  ">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -60,13 +82,14 @@ function SignIn() {
           >
             Sign in
           </button>
-          <div className='flex'>
-            <h4 className='mr-2'>Don’t have an account? </h4>
+          <div className="flex">
+            <h4 className="mr-2">Don’t have an account? </h4>
             <a href={`/register`}>
               <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
                 SignUp
               </h2>
-              </a></div>
+            </a>
+          </div>
         </form>
       </div>
     </div>
