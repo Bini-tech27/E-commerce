@@ -1,46 +1,36 @@
-import React from "react";
-import { IoSearchOutline } from "react-icons/io5";
-import Logo from "../assets/Logos.png";
-import cart from "../assets/cart.svg";
-import ProductList from "./ProductList";
-import AddProduct from "./Addproduct";
-import { MdSpaceDashboard } from "react-icons/md";
-import { BsFillGrid3X3GapFill,BsFillArchiveFill,BsPeopleFill } from "react-icons/bs";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+// import productService from "../services/productService";
 
+const Admin = () => {
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    // Fetch products when the component mounts
+    // productService.getProducts().then((data) => setProducts(data));
+  }, []);
 
-function Admin() {
+  const handleDelete = (productId) => {
+    // Delete a product and update the product list
+    // productService.deleteProduct(productId).then(() => {
+    //   setProducts(products.filter((product) => product.id !== productId));
+    // });
+  };
+
   return (
     <div>
-      <aside className="w-1/5 p-4 bg-gray-100">
-        <ul>
-          <li className="p-5">
-            <a className="flex " href="">
-              <MdSpaceDashboard /> Dashboard
-            </a>
-          </li>
-          <li className="p-5">
-            <a className="flex " href="">
-              <BsFillArchiveFill /> Products
-            </a>
-          </li>
-          <li className="p-5">
-            <a className="flex " href="">
-              <BsFillGrid3X3GapFill /> Categories
-            </a>
-          </li>
-          <li className="p-5">
-            <a className="flex " href="">
-              <BsPeopleFill /> Customers
-            </a>
-          </li>
-        </ul>
-      </aside>
-
-      {/* <ProductList />
-      <AddProduct /> */}
+      <table className="border-black">
+        <tr className="border-black">
+          <th className="border-black">First Header</th>
+          <th className="border-black">Second Header</th>
+        </tr>
+        <tr className="border-black">
+          <td className="border-black">This is a data cell</td>
+          <td className="border-black">This is also a data cell!</td>
+        </tr>
+      </table>
     </div>
   );
-}
+};
 
 export default Admin;

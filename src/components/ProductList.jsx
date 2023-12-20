@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import { ipAdd } from "./IpAdd";
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const [data, setData] = useState([]);
@@ -10,6 +10,7 @@ function ProductList() {
     axios
       .get(`${ipAdd}/product`)
       .then((response) => {
+        console.log('object',response.data.product)
         setData(response.data.product);
       })
       .catch((error) => {
@@ -20,7 +21,7 @@ function ProductList() {
     <div className="pl-2">
       <h1 className="text-2xl font-bold mb-4 ">Product List</h1>
       <div className="grid grid-cols-3 ">
-        {data.map((item) => (
+        {data?.map((item) => (
           <div key={item.id} className="bg-white p-4 rounded shadow">
             <img
               src={`${ipAdd}/${item.image}`}
@@ -32,11 +33,11 @@ function ProductList() {
               ${item.price}
             </span>
 
-            <a href={`/product/${item.id}`}>
+            <Link to={`/product/${item.id}`}>
               <button className="bg-yellow-600 text-white p-2 rounded-r-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                 view details
               </button>
-            </a>
+            </Link>
           </div>
         ))}
       </div>

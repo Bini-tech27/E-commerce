@@ -8,6 +8,7 @@ import SignIn from "./components/SignIn";
 import Admin from "./components/Admin";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Category from "./components/Category";
+import CategoryDisplay from "./components/CategoryDisplay";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Display />}></Route>
-          <Route path="/product/:category_id" element={<Category />}></Route>
+          <Route path="/product/category/:id" element={<CategoryDisplay />}></Route>
           <Route element={<PrivateRoutes />}>
             <Route path="/product/:id" element={<ProductDetail />}></Route>
           </Route>
