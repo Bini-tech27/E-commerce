@@ -1,31 +1,32 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { ipAdd } from "./IpAdd";
-import Cart from "./Cart";
-import { Link } from "react-router-dom";
+import { ipAdd } from "../IpAdd";
+import { useParams, Link } from "react-router-dom";
 
-function ProductList() {
-  const [data, setData] = useState([]);
+function CategoryDisplay() {
+  const { id } = useParams();
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
     axios
-      .get(`${ipAdd}/product`)
+      .get(`${ipAdd}/product/category/${id}`)
       .then((response) => {
-        console.log('object',response.data.product)
-        setData(response.data.product);
+        setProducts(response.data.product);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching product:", error);
       });
-  }, []);
+  }, [id]);
+
   return (
     <div className="pl-2">
-      <h1 className="text-2xl font-bold mb-4 ">Product List</h1>
+      <h1 className="text-2xl font-bold mb-4 ">Products Category</h1>
       <div className="grid grid-cols-3 ">
-        {data?.map((item) => (
+        {products?.map((item) => (
           <div key={item.id} className="bg-white p-4 rounded shadow">
             <img
               src={`${ipAdd}/${item.image}`}
-              className="w-full   object-cover rounded mb-4"
+              className="w-4/5   object-cover rounded mb-4"
             />
             <h1 className="text-xl font-semibold mb-2">{item.productName}</h1>
             <p className="text-gray-700">{item.description}</p>
@@ -33,17 +34,16 @@ function ProductList() {
               ${item.price}
             </span>
 
-            <Link to={`/product/${item.id}`}>
+            <a href={`/product/${item.id}`}>
               <button className="bg-yellow-600 text-white p-2 rounded-r-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">
                 view details
               </button>
-            </Link>
+            </a>
           </div>
         ))}
       </div>
-      {/* <Cart items={data}/> */}
     </div>
   );
 }
 
-export default ProductList;
+export default CategoryDisplay;

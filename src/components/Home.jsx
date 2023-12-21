@@ -1,6 +1,7 @@
 import React from "react";
-import Category from "./Category";
-import ProductList from "./ProductList";
+import Category from "./category/Category";
+import ProductList from "./product/ProductList";
+import Sidebar from "../Layout/Sidebar";
 
 function Home() {
   return (

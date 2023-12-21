@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { ipAdd } from "./IpAdd";
+import { ipAdd } from "../IpAdd";
 
 function Register() {
   const {
@@ -24,8 +24,7 @@ function Register() {
 
       .then((response) => {
         console.log(response);
-                window.location.replace("/sign-in");
-
+        window.location.replace("/sign-in");
       })
       .catch((error) => {
         console.error("Error submitting form:", error);

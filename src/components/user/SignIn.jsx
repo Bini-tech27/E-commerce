@@ -1,10 +1,10 @@
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ipAdd } from "./IpAdd";
+import { ipAdd } from "../IpAdd";
 import { useParams } from "react-router";
 
-function SignIn() {  
+function SignIn() {
   const { id } = useParams();
   const {
     register,
@@ -15,7 +15,7 @@ function SignIn() {
 
   const onSubmit = (data) => {
     let formData = new FormData();
-    formData.append("email",data.email);
+    formData.append("email", data.email);
     formData.append("password", data.password);
 
     axios
@@ -26,7 +26,7 @@ function SignIn() {
 
       .then((response) => {
         console.log(response);
-          localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.token);
         window.location.replace("/");
       })
 
