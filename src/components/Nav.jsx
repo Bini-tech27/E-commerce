@@ -5,7 +5,7 @@ import Logo from "../assets/Logos.png";
 import cart from "../assets/cart.svg";
 
 function Nav() {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('user'));
   const handleLogout = () => {
      localStorage.removeItem("token");
      setIsLoggedIn(null);
@@ -28,7 +28,7 @@ function Nav() {
             <IoSearchOutline />
           </button>
         </div>
-        {isLoggedIn ? (
+        {JSON.parse(isLoggedIn).token ? (
           <div className="flex justify-between ">
             <Link
               className="bg-yellow-700 mt-5 mr-3 p-2 h-10
@@ -44,8 +44,7 @@ function Nav() {
             >
               Logout
             </button>
-            <Link to='/cart'>
-              
+            <Link to="/cart">
               <img className="w-16 h-16" src={cart} alt="" />
             </Link>
           </div>

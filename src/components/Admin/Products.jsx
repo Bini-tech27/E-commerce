@@ -23,9 +23,7 @@ const Products = () => {
       .delete(`${ipAdd}/product/${productId}`)
       .then((response) => {
         console.log(response);
-        setProducts((prevProducts) =>
-          prevProducts.filter((product) => product.id !== productId)
-        );
+        
       })
       .catch((error) => {
         console.error("Error deleting product:", error);

@@ -15,6 +15,7 @@ import User from "./components/Admin/User";
 import AddCategory from "./components/Admin/AddCategory";
 import Order from "./components/Admin/Order";
 import Home from "./components/Home";
+import CartTable from "./components/cart/CartTable";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           </Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/sign-in" element={<SignIn />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/cart" element={<CartTable />}></Route>
 
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/dashboard/admin" element={<Admin />}></Route>

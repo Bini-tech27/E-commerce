@@ -14,19 +14,20 @@ function SignIn() {
   } = useForm();
 
   const onSubmit = (data) => {
-    let formData = new FormData();
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-
     axios
       .post(`${ipAdd}/users/login`, {
         email: data.email,
         password: data.password,
       })
-
       .then((response) => {
+        const user = {
+          id: response.data.user.user.id,
+          token: response.data.token,
+          role: response.data.user.user.role.roleName,
+        };
         console.log(response);
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(user));
+
         window.location.replace("/");
       })
 

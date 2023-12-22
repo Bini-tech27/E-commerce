@@ -38,7 +38,7 @@ function AddProduct() {
         <div className="flex justify-center  ">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="max-w-md mx-auto my-3 bg-white p-5"
+            className="max-w-md mx-auto my-3 bg-white p-2"
           >
             <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
               Add product

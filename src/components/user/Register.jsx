@@ -12,7 +12,6 @@ function Register() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     let formData = new FormData();
     formData.append("name", data.name);
     formData.append("file", data.proPic[0]);
