@@ -1,12 +1,14 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 
 function PrivateRoutes() {
+    const navigate = useNavigate();
   const token = localStorage.getItem("user");
-  let auth = JSON.parse(token);
-  return auth.token ? <Outlet /> : <Navigate to="/sign-in" />;
+  let auth = token ? JSON.parse(token) : null;
 
-  
+  return auth && auth.token ? <Outlet /> : <navigate to="/sign-in" />;
 }
 
 export default PrivateRoutes;
+
+

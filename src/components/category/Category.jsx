@@ -20,7 +20,7 @@ function Category() {
   }, []);
 
   return (
-    <div className="w-1/5 p-4 bg-gray-100">
+    <div className=" w-1/5 p-4 bg-gray-100">
       <h1 className="text-lg font-bold mb-4">Category</h1>
       <div className=" items-center mb-2 p-5">
         {category?.map((item) => (

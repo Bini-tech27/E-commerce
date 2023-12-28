@@ -19,8 +19,9 @@ function CategoryDisplay() {
       });
   }, [id]);
 
+
   return (
-    <div >
+    <div>
       <Link to="/" className="text-yellow-500 hover:text-yellow-700">
         <IoIosArrowRoundBack className="text-4xl" />
       </Link>
@@ -31,7 +32,7 @@ function CategoryDisplay() {
             <div key={item.id} className="bg-white p-4 rounded shadow">
               <img
                 src={`${ipAdd}/${item.image}`}
-                className="w-4/5   object-cover rounded mb-4"
+                className=" h-64 object-cover rounded mb-4 m-2 p-2 "
               />
               <h1 className="text-xl font-semibold mb-2">{item.productName}</h1>
               <p className="text-gray-700">{item.description}</p>

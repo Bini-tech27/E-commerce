@@ -10,6 +10,8 @@ const dataSource = [
     no: 1,
     productName: "",
     quantity: 1,
+    singlePrice:1,
+    totalPrice:1
   },
 ];
 

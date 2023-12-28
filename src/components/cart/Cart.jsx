@@ -1,10 +1,12 @@
 import React from "react";
 import CartTable from "./CartTable";
+import Order from "../Order";
 
 const Cart = () => {
   return (
     <div>
-   </div>
+      <CartTable />
+    </div>
   );
 };
 
