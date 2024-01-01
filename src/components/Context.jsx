@@ -7,8 +7,6 @@ export const Context = createContext();
 
 export const CartProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
-  const [totalQuantity, setTotalQuantity] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     axios
@@ -21,40 +19,13 @@ export const CartProvider = (props) => {
       });
   }, []); 
 
-  useEffect(() => {
-    let quantity = 0;
-    let price = 0;
 
-    cartItems.forEach((item) => {
-      quantity += item.quantity;
-      price += item.quantity * item.product.price;
-    });
-
-    setTotalQuantity(quantity);
-    setTotalPrice(price);
-  }, [cartItems]);
-
-  const handleDelete = (cartItemId) => {
-    axios
-      .delete(`${ipAdd}/carts/${cartItemId}`)
-      .then((response) => {
-        setCartItems((prevCartItems) =>
-          prevCartItems.filter((item) => item.cartId !== cartItemId)
-        );
-      })
-      .catch((error) => {
-        console.error("Error deleting product:", error);
-      });
-  };
 
   return (
     <div>
       <Context.Provider
         value={{
           cartItems: [cartItems, setCartItems],
-          totalPrice: [totalPrice, setTotalPrice],
-          totalQuantity: [totalQuantity, setTotalQuantity],
-          handleDelete: handleDelete,
         }}
       >
         {props.children}

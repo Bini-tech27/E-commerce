@@ -1,18 +1,17 @@
 import axios from "axios";
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { ipAdd } from "../IpAdd";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CartTable = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const id = localStorage.getItem("user");
   let auth = id ? JSON.parse(id) : null;
-  let Id = auth.id
-  const [userId, setUserId] = useState("Id");
-
+  let Id = auth.id;
+  const [userId, setUserId] = useState(Id);
 
   useEffect(() => {
     axios
@@ -50,9 +49,7 @@ const navigate = useNavigate();
         console.error("Error deleting product:", error);
       });
   };
- 
-
-  const handlePlaceOrder = () => {
+  const handleOrder = () => {
     const orderData = {
       totalAmount: totalPrice,
       userId: Id,
@@ -60,23 +57,21 @@ const navigate = useNavigate();
         productId: item.productId,
         quantity: item.quantity,
       })),
-
-      
     };
-            console.log("aa", orderData);
-
     axios
       .post(`${ipAdd}/order`, orderData)
       .then((response) => {
         console.log("Order placed successfully:", response.data);
-        navigate("/order");
+
+        axios.delete(`${ipAdd}/carts/user/${userId}`).then((response) => {
+          console.log("Cart deleted successfully:", response.data);
+          navigate("/order");
+        });
       })
       .catch((error) => {
         console.error("Error placing order:", error);
       });
   };
- 
-
 
   return (
     <div>
@@ -135,7 +130,7 @@ const navigate = useNavigate();
         </div>
       </div>
       <button
-        onClick={handlePlaceOrder}
+        onClick={handleOrder}
         className="bg-yellow-700 text-white px-2 py-2 rounded flex justify-center mx-96 my-10 hover:bg-yellow-600 w-24"
       >
         order

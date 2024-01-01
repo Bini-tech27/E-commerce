@@ -53,7 +53,7 @@ function Nav() {
           </button>
         </div>
       ) : (
-        <div className="flex">
+        <div className="flex mt-4">
           <Link
             to={`/register`}
             className="bg-yellow-700 mt-5 mr-3 p-2 h-10 text-white px-4 py-2 rounded-md"

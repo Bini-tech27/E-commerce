@@ -18,16 +18,17 @@ import CartTable from "./components/cart/CartTable";
 import Orders from "./components/Admin/Orders";
 import Order from "./components/Order";
 import Categories from "./components/Admin/Categories";
-
+import NavAdmin from "./components/Admin/NavAdmin";
 
 function App() {
   const role = localStorage.getItem("user");
-let auth = role ? JSON.parse(role) : null;
+  let auth = role ? JSON.parse(role) : null;
 
   return (
     <div>
       <BrowserRouter>
-        <Nav />
+        
+        {!auth || auth.role !== "admin" ? <Nav /> : <NavAdmin />}
         <Routes>
           {auth && auth.role === "admin" ? (
             <>

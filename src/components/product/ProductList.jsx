@@ -25,7 +25,7 @@ function ProductList() {
           <div key={item.id} className="bg-white p-4 rounded shadow">
             <img
               src={`${ipAdd}/${item.image}`}
-              className="w-full h-64 object-cover rounded mb-4 m-2 p-2"
+              className="w-full h-72 object-cover rounded mb-4 m-2 p-2"
               alt={`Product: ${item.productName}`}
             />
             <h1 className="text-xl font-semibold mb-2">{item.productName}</h1>

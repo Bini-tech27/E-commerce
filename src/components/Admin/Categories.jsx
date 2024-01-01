@@ -57,12 +57,7 @@ function Categories() {
 
               <td className="border p-2 ">
                 <div className="flex justify-evenly">
-                  <Link
-                    to={`/dashboard/admin/updateProduct/${item.id}`}
-                    className="bg-yellow-700 text-white px-2 py-1 rounded"
-                  >
-                    Update
-                  </Link>
+                  
                   <button
                     className="bg-yellow-700 text-white px-2 py-1 rounded"
                     onClick={() => handleDelete(item.id)}
