@@ -88,15 +88,7 @@ function ProductDetail() {
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-                {/* <label  className="m-2">
-                  Quantity:
-                </label>
-                <input
-                  type="number"
-                  {...register("number")}
-                className="border  rounded-md border-yellow-700"
-                  min="1" 
-                /> */}
+                
               </form>
             </div>
           </>

@@ -7,7 +7,6 @@ import SignIn from "./components/user/SignIn";
 import Admin from "./components/Admin/Admin";
 import PrivateRoutes from "./components/PrivateRoutes";
 import CategoryDisplay from "./components/category/CategoryDisplay";
-import Cart from "./components/cart/Cart";
 import Products from "./components/Admin/Products";
 import UpdateProduct from "./components/Admin/UpdateProduct";
 import AddProduct from "./components/Admin/AddProduct";

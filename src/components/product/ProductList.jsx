@@ -17,7 +17,6 @@ function ProductList() {
       });
   }, []);
   return (
-   
     <div className="pl-2">
       <h1 className="text-2xl font-bold mb-4">Product List</h1>
       <div className="grid justify-center grid-cols-1  sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4  gap-4">
