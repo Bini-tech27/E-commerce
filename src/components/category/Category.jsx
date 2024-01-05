@@ -11,7 +11,6 @@ function Category() {
     axios
       .get(`${ipAdd}/category`)
       .then((response) => {
-        console.log("user data", response);
         setCategory(response.data);
       })
       .catch((error) => {

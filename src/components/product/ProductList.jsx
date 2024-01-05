@@ -2,25 +2,36 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ipAdd } from "../IpAdd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchProductData } from "../../Redux/productAction";
 
-function ProductList() {
-  const [data, setData] = useState([]);
+function ProductList({ productData, fetchProductData, isLoading }) {
+  // const [data, setData] = useState([]);
   useEffect(() => {
-    axios
-      .get(`${ipAdd}/product`)
-      .then((response) => {
-        console.log("object", response.data.product);
-        setData(response.data.product);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    // axios
+    //   .get(`${ipAdd}/product`)
+    //   .then((response) => {
+    //     console.log("object", response.data.product);
+    //     setData(response.data.product);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching data:", error);
+    //   });
+    // setData(productData);
+    // console.log("Pro", data);
+  
+    fetchProductData();
   }, []);
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
   return (
     <div className="pl-2">
       <h1 className="text-2xl font-bold mb-4">Product List</h1>
       <div className="grid justify-center grid-cols-1  sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4  gap-4">
-        {data?.map((item) => (
+        {productData?.map((item) => (
           <div key={item.id} className="bg-white p-4 rounded shadow">
             <img
               src={`${ipAdd}/${item.image}`}
@@ -43,5 +54,17 @@ function ProductList() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    productData: state.productReducer.data,
+    isLoading: state.productReducer.loading,
+  };
+};
 
-export default ProductList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProductData: () => dispatch(fetchProductData()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
