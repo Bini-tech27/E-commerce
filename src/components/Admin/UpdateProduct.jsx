@@ -109,18 +109,7 @@ function UpdateProduct() {
                 <p className="text-red-500">{errors.name.message}</p>
               )}
             </label>
-            {/* <label className="block mb-4">
-              <span className="text-gray-700">file:</span>
-              <input
-                type="file"
-                {...register("proPic", {
-                  required: "Photo is required",
-                })}
-              />
-              {errors && errors.proPic && (
-                <p className="text-red-500">{errors.proPic.message}</p>
-              )}
-            </label> */}
+           
             <button type="submit" className="bg-black text-white px-4 py-2">
               Update Product
             </button>

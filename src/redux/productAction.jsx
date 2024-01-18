@@ -6,7 +6,6 @@ import {
 } from "./productActionTypes";
 
 
-
 export const fetchProductSuccess = (productData) => {
   return {
     type: FETCH_PRODUCT_SUCCESS,
@@ -34,7 +33,6 @@ export const fetchProductData =  () => {
 
               dispatch(fetchProductSuccess(productData));
 
-        
       })
       .catch((error) => {
         console.error("Error fetching product data:", error);

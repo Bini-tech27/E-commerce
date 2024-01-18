@@ -2,12 +2,9 @@ import React, { useState, createContext, useEffect } from "react";
 import axios from "axios";
 import { ipAdd } from "./IpAdd";
 
-
 export const Context = createContext();
-
 export const CartProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
-
   useEffect(() => {
     axios
       .get(`${ipAdd}/carts`)
@@ -18,8 +15,6 @@ export const CartProvider = (props) => {
         console.error("Error fetching data:", error);
       });
   }, []); 
-
-
 
   return (
     <div>

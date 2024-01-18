@@ -1,31 +1,14 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { ipAdd } from "../IpAdd";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchProductData } from "../../Redux/productAction";
 
 function ProductList({ productData, fetchProductData, isLoading }) {
-  // const [data, setData] = useState([]);
+
   useEffect(() => {
-    // axios
-    //   .get(`${ipAdd}/product`)
-    //   .then((response) => {
-    //     console.log("object", response.data.product);
-    //     setData(response.data.product);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data:", error);
-    //   });
-    // setData(productData);
-    // console.log("Pro", data);
-  
     fetchProductData();
   }, []);
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <div className="pl-2">
